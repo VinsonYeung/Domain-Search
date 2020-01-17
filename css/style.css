@@ -1,0 +1,31 @@
+input#search {
+    padding: 8px;
+    font-size: 14px;
+    width: 100%;
+}
+
+select#saved-domains {
+    width: 200px;
+}
+
+input#new-domain {
+    width: 200px
+}
+
+select#search-engine {
+    width: 200px;
+}
+
+select#domains-list {
+    min-width: 200px;
+    width: 100%;
+    padding: 4px;
+}
+
+div.buttons button {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 49%;
+}
