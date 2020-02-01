@@ -30,7 +30,7 @@ $(document).ready(function() {
 
     $('#remove-url').click(function() {
         chrome.storage.local.get('domains', function(data) {
-            var url = $('#domains-list').val();
+            var url = $('#saved-domains').val();
             data.domains = data.domains.filter(e => e != url);
             chrome.storage.local.set({domains: data.domains});
             showDomains();
