@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Domain Search",
-  "version": "0.8",
+  "version": "1.0",
   "description": "Chrome extension that allows you to quickly search within the current or saved domains. Multiple search engines are available to use.",
   "options_ui": {
     "page": "options.html",

@@ -15,12 +15,16 @@ $(document).ready(function() {
 
     $('#save-url').click(function() {
         chrome.storage.local.get('domains', function(data) {
+            // No existing list
             if (data.domains == undefined) {
                 var newArray = [];
                 data.domains = newArray;
             }
-            if (data.domains.includes($('#new-domain').val())) {
-                return;
+            // Domain already exists
+            for (i = 0; i < data.domains.length; i++) {
+                if (String(data.domains[i]) == $('#new-domain').val()) {
+                    return;
+                }
             }
             data.domains.push($('#new-domain').val());
             chrome.storage.local.set({domains: data.domains});
@@ -31,6 +35,7 @@ $(document).ready(function() {
     $('#shift-up').click(function() {
         chrome.storage.local.get('domains', function(data) {
             var url = $('#saved-domains').val();
+            // Domains already exists
             for (i = 0; i < data.domains.length; i++) {
                 if (String(data.domains[i]) == url) {
                     var index = i;
@@ -53,6 +58,7 @@ $(document).ready(function() {
     $('#shift-down').click(function() {
         chrome.storage.local.get('domains', function(data) {
             var url = $('#saved-domains').val();
+            // Domain already exists
             for (i = 0; i < data.domains.length; i++) {
                 if (String(data.domains[i]) == url) {
                     var index = i;
