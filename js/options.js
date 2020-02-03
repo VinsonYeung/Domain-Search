@@ -7,7 +7,7 @@ $(document).ready(function() {
             $('#saved-domains').empty();
             if (data.domains != undefined) {
                 data.domains.forEach(element => {
-                    $('#saved-domains').append("<option value=" + element + ">" + element + "</option>");
+                    $('#saved-domains').append("<option id=" + element + " value=" + element + ">" + element + "</option>");
                 });
             }
         });
@@ -25,6 +25,50 @@ $(document).ready(function() {
             data.domains.push($('#new-domain').val());
             chrome.storage.local.set({domains: data.domains});
             showDomains();
+        });
+    });
+
+    $('#shift-up').click(function() {
+        chrome.storage.local.get('domains', function(data) {
+            var url = $('#saved-domains').val();
+            for (i = 0; i < data.domains.length; i++) {
+                if (String(data.domains[i]) == url) {
+                    var index = i;
+                    break;
+                }
+            }
+            // If not first
+            if (index > 0) {
+                data.domains[index] = data.domains[index - 1];
+                data.domains[index - 1] = url;
+                chrome.storage.local.set({domains: data.domains});
+                showDomains();
+                $(document).ready(function() {
+                    $('select#saved-domains').val(url);
+                });
+            }
+        });
+    });
+
+    $('#shift-down').click(function() {
+        chrome.storage.local.get('domains', function(data) {
+            var url = $('#saved-domains').val();
+            for (i = 0; i < data.domains.length; i++) {
+                if (String(data.domains[i]) == url) {
+                    var index = i;
+                    break;
+                }
+            }
+            // If not last
+            if (index < data.domains.length - 1 && index >= 0) {
+                data.domains[index] = data.domains[index + 1];
+                data.domains[index + 1] = url;
+                chrome.storage.local.set({domains: data.domains});
+                showDomains();
+                $(document).ready(function() {
+                    $('select#saved-domains').val(url);
+                });
+            }
         });
     });
 
