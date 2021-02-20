@@ -1,7 +1,9 @@
 $(document).ready(function() {
     const google = "https://www.google.com/search?q=";
+    const yahoo = "https://www.search.yahoo.com/search?p=";
     const bing = "https://www.bing.com/search?q=";
-    const duckDuckGo = "https://www.duckduckgo.com/?q=";
+    const duckduckgo = "https://www.duckduckgo.com/?q=";
+    const ecosia = "https://www.ecosia.org/search?q=";
     
     showDomains();
 
@@ -30,16 +32,22 @@ $(document).ready(function() {
                     case "google":
                         search = google;
                         break;
+                    case "yahoo":
+                        search = yahoo;
+                        break;
                     case "bing":
                         search = bing;
                         break;
                     case "duckduckgo":
-                        search = duckDuckGo;
+                        search = duckduckgo;
+                        break;
+                    case "ecosia":
+                        search = ecosia;
                         break;
                     default:
                         search = google;
                 }
-                search += "site:" + hostname + " " + $('#search').val();
+                search += "site:" + hostname + "+" + $('#search').val();
                 chrome.tabs.update({ url: search })
             });
         });
@@ -57,16 +65,22 @@ $(document).ready(function() {
                     case "google":
                         search = google;
                         break;
+                    case "yahoo":
+                        search = yahoo;
+                        break;
                     case "bing":
                         search = bing;
                         break;
                     case "duckduckgo":
-                        search = duckDuckGo;
+                        search = duckduckgo;
+                        break;
+                    case "ecosia":
+                        search = ecosia;
                         break;
                     default:
                         search = google;
                 }
-                search += "site:" + hostname + " " + $('#search').val();
+                search += "site:" + hostname + "+" + $('#search').val();
                 window.open(search, '_blank');
             });
         });
