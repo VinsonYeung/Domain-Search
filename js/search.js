@@ -5,11 +5,12 @@ $(document).ready(function() {
     const duckduckgo = "https://www.duckduckgo.com/?q=";
     const ecosia = "https://www.ecosia.org/search?q=";
     
-    showDomains();
+    showSelectableDomains();
 
     $('input#search').focus();
 
-    function showDomains() {
+    // Show list of domains for selection
+    function showSelectableDomains() {
         chrome.storage.local.get('domains', function(data) {
             $('#domains-list').append("<option value='current'>Current Domain</option>");
             if (data.domains != undefined) {

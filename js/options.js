@@ -1,9 +1,12 @@
 $(document).ready(function() {
 
-    showDomains();
+    showSavedDomains();
+    getCurrentSearchEngine();
 
-    function showDomains() {
-        chrome.storage.local.get('domains', function(data) {
+    // Shows list of saved domains for modification
+    function showSavedDomains() {
+        chrome.storage.local.get('domains', function(data) {    ///////////////////////////////////
+            console.log(data.domains);
             $('#saved-domains').empty();
             if (data.domains != undefined) {
                 data.domains.forEach(element => {
@@ -12,6 +15,16 @@ $(document).ready(function() {
             }
         });
     };
+
+    // Show the set search engine as chosen
+    function getCurrentSearchEngine() {
+        chrome.storage.local.get('searchEngine', function(data) {
+            // If search engine is set
+            if (data.searchEngine != null) {
+                document.getElementById(data.searchEngine).setAttribute("selected", "selected")
+            }
+        });
+    }
 
     $('#save-url').click(function() {
         chrome.storage.local.get('domains', function(data) {
@@ -28,14 +41,14 @@ $(document).ready(function() {
             }
             data.domains.push($('#new-domain').val());
             chrome.storage.local.set({domains: data.domains});
-            showDomains();
+            showSavedDomains();
         });
     });
 
     $('#shift-up').click(function() {
         chrome.storage.local.get('domains', function(data) {
-            var url = $('#saved-domains').val();
-            // Domains already exists
+            var url = $('#saved-domains').val()[0];
+            // Find position
             for (i = 0; i < data.domains.length; i++) {
                 if (String(data.domains[i]) == url) {
                     var index = i;
@@ -47,7 +60,7 @@ $(document).ready(function() {
                 data.domains[index] = data.domains[index - 1];
                 data.domains[index - 1] = url;
                 chrome.storage.local.set({domains: data.domains});
-                showDomains();
+                showSavedDomains();
                 $(document).ready(function() {
                     $('select#saved-domains').val(url);
                 });
@@ -57,8 +70,8 @@ $(document).ready(function() {
 
     $('#shift-down').click(function() {
         chrome.storage.local.get('domains', function(data) {
-            var url = $('#saved-domains').val();
-            // Domain already exists
+            var url = $('#saved-domains').val()[0];
+            // Find position
             for (i = 0; i < data.domains.length; i++) {
                 if (String(data.domains[i]) == url) {
                     var index = i;
@@ -70,7 +83,7 @@ $(document).ready(function() {
                 data.domains[index] = data.domains[index + 1];
                 data.domains[index + 1] = url;
                 chrome.storage.local.set({domains: data.domains});
-                showDomains();
+                showSavedDomains();
                 $(document).ready(function() {
                     $('select#saved-domains').val(url);
                 });
@@ -80,10 +93,10 @@ $(document).ready(function() {
 
     $('#remove-url').click(function() {
         chrome.storage.local.get('domains', function(data) {
-            var url = $('#saved-domains').val();
+            var url = $('#saved-domains').val()[0];
             data.domains = data.domains.filter(e => e != url);
             chrome.storage.local.set({domains: data.domains});
-            showDomains();
+            showSavedDomains();
         });
     });
 
