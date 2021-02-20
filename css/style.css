@@ -1,3 +1,7 @@
+body {
+    width: 230px;
+}
+
 input#search {
     padding: 8px;
     font-size: 14px;
@@ -5,19 +9,19 @@ input#search {
 }
 
 select#saved-domains {
-    width: 200px;
+    width: 100%;
 }
 
 input#new-domain {
-    width: 200px
+    width: 74%;
 }
 
 select#search-engine {
-    width: 200px;
+    width: 77%;
 }
 
 select#domains-list {
-    min-width: 200px;
+    min-width: 100%;
     width: 100%;
     padding: 4px;
 }
@@ -28,4 +32,25 @@ div.buttons button {
     margin-left: auto;
     margin-right: auto;
     width: 49%;
+}
+
+p {
+    margin-top: 8px;
+    margin-bottom: 0px;
+}
+
+button#collapse-options {
+    background-color: #eee;
+    color: #444;
+    padding: 4px;
+    margin-top: 6px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+}
+
+button#collapse-options:hover {
+    background-color: rgb(212, 212, 212);
+    color: rgb(51, 51, 51);
 }

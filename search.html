@@ -17,5 +17,27 @@
             </div>
         </form>
     </div>
+    <button id="collapse-options">Options</button>
+    <div id="options" style="display: none;">
+        <p>Search Engine</p>
+        <select id="search-engine">
+            <option id="google" value="google">Google</option>
+            <option id="yahoo" value="yahoo">yahoo</option>
+            <option id="bing" value="bing">Bing</option>
+            <option id="duckduckgo" value="duckduckgo">DuckDuckGo</option>
+            <option id="ecosia" value="ecosia">Ecosia</option>
+        </select>
+        <button id="save-search-engine">Save</button>
+
+        <p>Add Domain To List</p>
+        <input id="new-domain" type="url" autocomplete="off"></input>
+        <button id="save-url">Save</button>
+
+        <p>Remove Saved Domain</p>
+        <select id="saved-domains" multiple></select><br>
+        <button id="remove-url">Remove</button>
+        <button id="shift-up">Move Up</button>
+        <button id="shift-down">Move Down</button>
+    </div>
 </body>
 </html>
