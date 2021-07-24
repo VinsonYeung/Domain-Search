@@ -18,7 +18,7 @@ $(document).ready(function() {
             $('#domains-list').append("<option value='current'>Current Domain</option>");
             if (data.domains != undefined) {
                 data.domains.forEach(element => {
-                    $('#domains-list').append("<option value=" + element + ">" + element + "</option>");
+                    $('#domains-list').append("<option value='" + element + "'>" + element + "</option>");
                 });
             }
         });
@@ -30,7 +30,7 @@ $(document).ready(function() {
             $('#saved-domains').empty();
             if (data.domains != undefined) {
                 data.domains.forEach(element => {
-                    $('#saved-domains').append("<option id=" + element + " value=" + element + ">" + element + "</option>");
+                    $('#saved-domains').append("<option id='" + element + "' value='" + element + "'>" + element + "</option>");
                 });
             }
         });
